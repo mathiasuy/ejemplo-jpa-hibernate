@@ -23,7 +23,7 @@ import java.util.List;
 public abstract class TestGrabables {
 
 	private static FactoryModel fac = new FactoryModel();
-	private static IGrabable cgr = fac.getCGrabable();
+	private static IGrabable cgr = fac.getIGrabables();
 	private static EntityManager manager;
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");;
 	

@@ -25,7 +25,7 @@ public class ListaEmisoras extends JPanel {
 		
 		scrollPane.setViewportView(lstGrabables);		
 		
-		List<DtGrabable> grabables = fac.getCGrabable().listarGrabables();
+		List<DtGrabable> grabables = fac.getIGrabables().listarGrabables();
 		DefaultListModel<DtGrabable> dflm = new DefaultListModel<>();
 		grabables.forEach(grab->{
 			dflm.addElement(grab);

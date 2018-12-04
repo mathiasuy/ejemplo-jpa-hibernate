@@ -34,7 +34,7 @@ public class ListaGrabados extends JPanel {
 	void update() {
 		DefaultListModel<DtGrabados> dflm = new DefaultListModel<DtGrabados>();
 		
-		ArrayList<DtGrabados> grabados = fac.getIGrabables().getListRecords();
+		ArrayList<DtGrabados> grabados = fac.getIGrabables().listRecords();
 		grabados.forEach(element->{
 			dflm.addElement(element);
 		});

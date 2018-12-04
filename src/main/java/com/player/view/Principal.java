@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.player.model.FactoryModel;
+
 import javax.swing.JLayeredPane;
 import javax.swing.JTabbedPane;
 
@@ -19,6 +22,8 @@ public class Principal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					FactoryModel fac = new FactoryModel();
+					fac.getIGrabables().precarga();
 					Principal frame = new Principal();
 					frame.setVisible(true);
 				} catch (Exception e) {

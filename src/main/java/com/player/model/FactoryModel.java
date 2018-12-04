@@ -2,7 +2,7 @@ package com.player.model;
 
 public class FactoryModel {
 	
-	public IGrabable getCGrabable() {
+	public IGrabable getIGrabables() {
 		return new CGrabable();
 	}
 	

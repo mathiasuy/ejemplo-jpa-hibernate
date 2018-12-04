@@ -9,7 +9,8 @@ import java.util.concurrent.Executors;
 
 import javax.swing.JTextPane;
 
-import controller.Reproductor;
+import com.player.controllers.Reproductor;
+
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 import javax.swing.JSlider;

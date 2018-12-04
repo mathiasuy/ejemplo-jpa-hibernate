@@ -2,12 +2,12 @@ package com.player.view;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import controller.Sound;
+import com.player.controllers.Sound;
 import com.player.datatypes.DtGrabable;
 
 public class Grabacion {
 
-	int id;
+	Long id;
 	ExecutorService sounds;
 	ExecutorService timer;
 	Cronometro jPanel;
@@ -24,7 +24,7 @@ public class Grabacion {
 		timer.execute(this.jPanel);
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 

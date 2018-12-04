@@ -1,45 +1,31 @@
 package com.player.view;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.FileDialog;
 
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.player.model.FactoryModel;
-import controller.Reproductor;
-import controller.Sound;
+import com.player.controllers.Reproductor;
 import com.player.datatypes.DtEmisora;
 import com.player.datatypes.DtGrabable;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
-import model.Grabable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javax.swing.JLabel;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
-import javax.swing.JList;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
-import javax.swing.JTabbedPane;
 
 public class Grabador extends JPanel{
 	Reproductor repro = new Reproductor();	
-	Factory fac = new Factory();
+	FactoryModel fac = new FactoryModel();
 	
 	JScrollPane scrollPane_1 = new JScrollPane();
 	JLayeredPane layeredPane = new JLayeredPane();
@@ -50,7 +36,7 @@ public class Grabador extends JPanel{
 	ExecutorService exe = Executors.newFixedThreadPool(1);
 	
 	
-	HashMap<Integer, Grabacion> grabaciones = new HashMap<>();
+	HashMap<Long, Grabacion> grabaciones = new HashMap<>();
 	
 	static int alto = 13;
 	
@@ -58,13 +44,13 @@ public class Grabador extends JPanel{
 	 * Create the frame.
 	 */
 	public Grabador() {
-		fac.getIGrabables().precarga();
+//		fac.getIGrabables().precarga();
 		ListaEmisoras listaGrabables = new ListaEmisoras(fac);
 		
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		fac.getIGrabables().precarga();
+//		fac.getIGrabables().precarga();
 		carga();
 		
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,7 +77,7 @@ public class Grabador extends JPanel{
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (grabaciones.containsKey(listaGrabables.getIdSeleccion())){
-					int key = listaGrabables.getIdSeleccion();
+					Long key = listaGrabables.getIdSeleccion();
 					grabaciones.get(key).pararGrabacion();
 					grabaciones.remove(key);
 				}
@@ -171,7 +157,6 @@ public class Grabador extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 	private JTextField textField = new JTextField();
 	private final JButton btnAbrirCarpeta = new JButton("Abrir carpeta");
 	private final JButton btnStopPlay = new JButton("Stop");
