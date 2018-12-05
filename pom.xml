@@ -6,6 +6,7 @@
 	<groupId>es.player</groupId>
 	<artifactId>player</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<dependencies> <!-- https://mvnrepository.com/artifact/javassist/javassist -->
 		<!-- https://mvnrepository.com/artifact/org.antlr/antlr-complete -->
 		<dependency>
@@ -28,6 +29,17 @@
 			<artifactId>persistence-api</artifactId>
 			<version>1.0.2</version>
 		</dependency> <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<!-- https://mvnrepository.com/artifact/com.googlecode.soundlibs/basicplayer -->
+		<dependency>
+		    <groupId>com.googlecode.soundlibs</groupId>
+		    <artifactId>basicplayer</artifactId>
+		    <version>3.0.0.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.toedter</groupId>
+		  <artifactId>jcalendar</artifactId>
+		  <version>1.4</version>
+		</dependency>				
 	</dependencies>
 	<build>
 		<plugins>
@@ -38,8 +50,58 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<fork>true</fork>
+					<executable>C:\Program Files\Java\jdk1.8.0_172\bin\javac</executable>
 				</configuration>
 			</plugin>
+    <plugin>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <version>2.2.1</version>
+      <executions>
+        <execution>
+          <id>make-assembly</id>
+          <phase>package</phase>
+          <goals>
+            <goal>single</goal>
+          </goals>
+          <configuration>
+            <descriptors>
+              <descriptor>src/main/assembly/src.xml</descriptor>
+            </descriptors>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>			
+			<plugin>
+			    <groupId>com.jolira</groupId>
+			    <artifactId>onejar-maven-plugin</artifactId>
+			    <executions>
+			        <execution>
+			            <configuration>
+			                <mainClass>com.player.view.Inicio</mainClass>
+			                <attachToBuild>true</attachToBuild>
+			                <filename>
+			                  ${project.build.finalName}.${project.packaging}
+			                </filename>
+			            </configuration>
+			            <goals>
+			                <goal>one-jar</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>			
 		</plugins>
+    <resources>
+        <!-- After this maven stopped to put parsistence.xml-->
+        <!-- Brutal force to fix -->
+        <resource>
+            <directory>src/main/resources/META-INF</directory>
+            <targetPath>META-INF</targetPath>
+            <includes>
+                <include>persistence.xml</include>
+            </includes>
+        </resource>
+    </resources>		
 	</build>
+	
 </project>

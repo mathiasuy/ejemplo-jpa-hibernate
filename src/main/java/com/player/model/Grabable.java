@@ -67,7 +67,7 @@ public abstract class Grabable  implements Serializable{
 	//Tenemos un Grabable para varios Eventos
 	//En OneToMany el fetch por defecto es LAZY
 	//pongo mappedBy="Grabable" para indicar que campo JAVA (no columna) en Evento es el que guarda el Grabable (la relacion llegara desde Evento)
-	@OneToMany(mappedBy = "grabable", cascade = CascadeType.ALL, orphanRemoval = true)//aca el fetch es por defecto, se agrega a modo ilustrativo
+	@OneToMany(mappedBy = "grabable", cascade = CascadeType.ALL)//, orphanRemoval = true)//aca el fetch es por defecto, se agrega a modo ilustrativo
 	private List<Evento> eventos = new ArrayList<>();
 	
 	

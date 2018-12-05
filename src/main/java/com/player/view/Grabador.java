@@ -62,7 +62,7 @@ public class Grabador extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					DtEmisora emisora = (DtEmisora)listaGrabables.getSeleccion();
-					if (emisora.getTipo().equals("mp3"))
+					if (!emisora.getTipo().equals("mp3"))
 						throw new ExcepcionNoSoportado();
 					repro.loadURL(emisora.getUrl());
 					exe.execute(repro);
@@ -111,7 +111,7 @@ public class Grabador extends JPanel{
 		btnRecord.setBounds(66, 46, 97, 25);
 		add(btnRecord);
 		listaGrabables.setVisible(true);
-		listaGrabables.setBounds(66, 84, 247, 355);
+		listaGrabables.setBounds(66, 84, 247, 328);
 		add(listaGrabables);
 		
 //		textField = new JTextField();
@@ -136,6 +136,16 @@ public class Grabador extends JPanel{
 		add(scrollPane);
 		
 		scrollPane.setViewportView(layeredPane);
+		
+		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				listaGrabables.carga();
+				carga();
+			}
+		});
+		btnActualizar.setBounds(66, 414, 249, 25);
+		add(btnActualizar);
 	}	
 	
 	/**

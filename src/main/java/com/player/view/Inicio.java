@@ -28,16 +28,16 @@ public class Inicio extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JOptionPane.showMessageDialog(null,  "A1");
+//					JOptionPane.showMessageDialog(null,  "A1");
 					FactoryModel fac = new FactoryModel();
-					JOptionPane.showMessageDialog(null,  "A2");
+//					JOptionPane.showMessageDialog(null,  "A2");
 					IGrabable IGR = fac.getIGrabables();
 					IGR.precarga();
-					JOptionPane.showMessageDialog(null,  "A3");
+//					JOptionPane.showMessageDialog(null,  "A3");
 					Inicio frame = new Inicio();
-					JOptionPane.showMessageDialog(null,  "A4");
+//					JOptionPane.showMessageDialog(null,  "A4");
 					frame.setVisible(true);
-					JOptionPane.showMessageDialog(null,  "A5");
+//					JOptionPane.showMessageDialog(null,  "A5");
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null,  e.getMessage());
 					e.printStackTrace();
