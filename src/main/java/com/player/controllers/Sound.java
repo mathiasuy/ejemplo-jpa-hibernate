@@ -36,7 +36,7 @@ public class Sound implements Runnable{
         	OutputStream outstream;
         	
         	new File(DIRECTORIO).mkdirs();
-            outstream = new FileOutputStream(new File( DIRECTORIO + grabable.getNombre() +"_" + (LocalDateTime.now().getMonthValue()) +"-"+ (LocalDateTime.now().getDayOfMonth()) +"-"+ (LocalDateTime.now().getYear())+ "_" + (LocalDateTime.now().getHour()) +"-" + (LocalDateTime.now().getMinute()) + "."+ grabable.getTipo()));
+            outstream = new FileOutputStream(new File( DIRECTORIO + grabable.getNombreArchivo() +"_" + (LocalDateTime.now().getMonthValue()) +"-"+ (LocalDateTime.now().getDayOfMonth()) +"-"+ (LocalDateTime.now().getYear())+ "_" + (LocalDateTime.now().getHour()) +"-" + (LocalDateTime.now().getMinute()) + "."+ grabable.getTipo()));
             byte[] buffer = new byte[4096];
             int len;
 //            long t = System.currentTimeMillis();
