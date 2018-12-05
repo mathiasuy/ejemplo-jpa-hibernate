@@ -65,7 +65,7 @@ public class Emisora extends Grabable{
 	}
 	
 	public DtGrabable getDt() {
-		return new DtEmisora(super.getId(), super.getNombre(), super.getDescripcion(), super.getNombreArchivo(), this.banda, this.frecuencia, this.url,super.getTipo());
+		return new DtEmisora(super.getId(), super.getNombre(), super.getDescripcion(), super.getNombreArchivo(), this.banda, this.frecuencia, this.url,super.getTipo(), this.getPais(), this.getLocalidad());
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Map;
 
 import javax.swing.JSlider;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 import javazoom.jlgui.basicplayer.BasicController;
@@ -18,7 +19,7 @@ public class Reproductor  implements BasicPlayerListener, Runnable{
 	private static final String DIRECTORIO = (new File("")).getAbsolutePath() + "\\records\\";	
 	private BasicPlayer basicPlayer;
 	private Double bytesLength;
-	private JTextPane txtPanel = null;
+	private JTextArea txtPanel = null;
 	private JSlider slider = null;
 	private Object dir = null;
 	
@@ -35,17 +36,8 @@ public class Reproductor  implements BasicPlayerListener, Runnable{
 		basicPlayer.play();
 	}
 	
-	
-	public void play(JTextPane txtPanel, JSlider slider) throws BasicPlayerException {
-		this.txtPanel = txtPanel;
-		this.slider = slider;
-		 basicPlayer.play();
-		 if (slider != null)
-			 slider.setMaximum(bytesLength.intValue());		  
-	}
-	
-	public void load(JTextPane txtPanel, JSlider slider) throws BasicPlayerException {
-		this.txtPanel = txtPanel;
+	public void load(JTextArea txtPanel2, JSlider slider) throws BasicPlayerException {
+		this.txtPanel = txtPanel2;
 		this.slider = slider;
 	}
 	
@@ -61,6 +53,8 @@ public class Reproductor  implements BasicPlayerListener, Runnable{
 	public void opened(Object arg0, Map arg1) {
 		 if (arg1.containsKey("audio.length.bytes")) {
 			 bytesLength = Double.parseDouble(arg1.get("audio.length.bytes").toString());
+		 }else {
+			 bytesLength = new Double(100);
 		 }
 	}
 

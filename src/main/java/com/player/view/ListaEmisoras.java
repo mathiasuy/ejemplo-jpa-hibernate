@@ -15,16 +15,20 @@ import java.awt.BorderLayout;
 public class ListaEmisoras extends JPanel {
 	JList<DtGrabable> lstGrabables = new JList<DtGrabable>();
 	JScrollPane scrollPane = new JScrollPane();
+	FactoryModel fac = new FactoryModel();
 	/**
 	 * Create the panel.
 	 */
-	public ListaEmisoras(FactoryModel fac) {
+	public ListaEmisoras() {
 		setLayout(new BorderLayout(0, 0));
 		scrollPane.setBounds(25, 85, 223, 286);
 		add(scrollPane);
 		
 		scrollPane.setViewportView(lstGrabables);		
-		
+		carga();
+	}
+	
+	public void carga() {
 		List<DtGrabable> grabables = fac.getIGrabables().listarGrabables();
 		DefaultListModel<DtGrabable> dflm = new DefaultListModel<>();
 		grabables.forEach(grab->{
@@ -32,6 +36,7 @@ public class ListaEmisoras extends JPanel {
 		});
 		lstGrabables.setModel(dflm);
 		lstGrabables.setSelectedIndex(0);
+		
 	}
 	
 	public DtGrabable getSeleccion() {

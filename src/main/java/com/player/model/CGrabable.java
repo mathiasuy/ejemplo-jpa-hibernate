@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 import com.player.datatypes.DtEmisora;
 import com.player.datatypes.DtEvento;
@@ -25,10 +26,10 @@ public class CGrabable implements IGrabable{
 	
 	@Override
 	public Long altaEmisora(String nombre, String descripcion, String nombreArchivo, String banda, String frecuencia,
-			String url,String  pais,String localidad, String tipo) {
+			String url,String  pais,String localidad, String tipoDeArchivo) {
 		EntityManager manager = emf.createEntityManager();
 		manager.getTransaction().begin();
-		Emisora emi = new Emisora(nombre, descripcion, nombreArchivo, banda, frecuencia, url, pais, localidad, tipo);
+		Emisora emi = new Emisora(nombre, descripcion, nombreArchivo, banda, frecuencia, url, pais, localidad, tipoDeArchivo);
 		manager.persist(emi);
 		manager.getTransaction().commit();
 		manager.close();
@@ -159,10 +160,12 @@ public class CGrabable implements IGrabable{
 	
 	@Override
 	public void precarga() {
-		altaEmisora("DelSol", "Emisora de radio", "DelSol", "99.5", "FM", "https://radio3.dl.uy:9952/?type=http&nocache=2780", "Uruguay","Montevideo","mp3");
-		altaEmisora("Oceano", "Emisora de radio", "Oceano", "93.9", "FM", "http://radio3.oceanofm.com:8010/listen.mp3", "Uruguay","Montevideo","aac");
-		altaEmisora("Azul", "Emisora de radio", "Azul", "101.9", "FM", "http://195.154.182.222:3320/stream", "Uruguay","Montevideo","aac");
-		altaEmisora("Sport890", "Emisora de radio", "Deportes", "890", "AM", "http://d1a7butsko8nkd.cloudfront.net/sport.mp3", "Uruguay","Montevideo","mp3");
+//		JOptionPane.showMessageDialog(null,  "B1");
+//		altaEmisora("DelSol", "Emisora de radio", "DelSol", "99.5", "FM", "https://radio3.dl.uy:9952/?type=http&nocache=2780", "Uruguay","Montevideo","mp3");
+//		JOptionPane.showMessageDialog(null,  "B2");
+//		altaEmisora("Oceano", "Emisora de radio", "Oceano", "93.9", "FM", "http://radio3.oceanofm.com:8010/listen.mp3", "Uruguay","Montevideo","aac");
+//		altaEmisora("Azul", "Emisora de radio", "Azul", "101.9", "FM", "http://195.154.182.222:3320/stream", "Uruguay","Montevideo","aac");
+//		altaEmisora("Sport890", "Emisora de radio", "Deportes", "890", "AM", "http://d1a7butsko8nkd.cloudfront.net/sport.mp3", "Uruguay","Montevideo","mp3");
 
 //		gr = new Emisora(4,"Espectador", "Emisora de radio", "Deportes", "810", "AM", "http://streaming.espectador.com/envivoaac", "Uruguay","Montevideo","aac");
 //		MGrabables.getInstance().add(gr);

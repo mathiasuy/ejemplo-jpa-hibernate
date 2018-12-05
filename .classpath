@@ -18,7 +18,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
@@ -40,5 +40,6 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/user6/git/player/lib/mp3spi1.9.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/user6/git/player/lib/tritonus_share.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/user6/git/player/lib/vorbisspi1.0.2.jar"/>
+	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

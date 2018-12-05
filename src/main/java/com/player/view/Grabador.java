@@ -8,6 +8,8 @@ import com.player.model.FactoryModel;
 import com.player.controllers.Reproductor;
 import com.player.datatypes.DtEmisora;
 import com.player.datatypes.DtGrabable;
+import com.player.exceptions.ExcepcionNoSoportado;
+
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 import java.util.HashMap;
@@ -21,18 +23,15 @@ import java.net.MalformedURLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class Grabador extends JPanel{
 	Reproductor repro = new Reproductor();	
 	FactoryModel fac = new FactoryModel();
-	
-	JScrollPane scrollPane_1 = new JScrollPane();
-	JLayeredPane layeredPane = new JLayeredPane();
 	JButton btnPlay = new JButton("Play");
 	JButton btnStop = new JButton("Stop Record");
 	JButton btnRecord = new JButton("Record");
-	JLabel lblMensaje = new JLabel("");
 	ExecutorService exe = Executors.newFixedThreadPool(1);
 	
 	
@@ -45,7 +44,7 @@ public class Grabador extends JPanel{
 	 */
 	public Grabador() {
 //		fac.getIGrabables().precarga();
-		ListaEmisoras listaGrabables = new ListaEmisoras(fac);
+		ListaEmisoras listaGrabables = new ListaEmisoras();
 		
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -54,7 +53,7 @@ public class Grabador extends JPanel{
 		carga();
 		
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 499, 459);
+		setBounds(100, 100, 692, 536);
 //		contentPane = new JPanel();
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 //		setContentPane(contentPane);
@@ -62,17 +61,18 @@ public class Grabador extends JPanel{
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					repro.loadURL(((DtEmisora)listaGrabables.getSeleccion()).getUrl());
-//					repro.play();
+					DtEmisora emisora = (DtEmisora)listaGrabables.getSeleccion();
+					if (emisora.getTipo().equals("mp3"))
+						throw new ExcepcionNoSoportado();
+					repro.loadURL(emisora.getUrl());
 					exe.execute(repro);
-				} catch (BasicPlayerException | MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (BasicPlayerException | MalformedURLException | ExcepcionNoSoportado e) {
+					JOptionPane.showMessageDialog(null, e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		
-		btnPlay.setBounds(273, 24, 97, 25);
+		btnPlay.setBounds(405, 46, 97, 25);
 		add(btnPlay);
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -84,7 +84,7 @@ public class Grabador extends JPanel{
 			}
 		});
 		
-		btnStop.setBounds(134, 24, 114, 25);
+		btnStop.setBounds(201, 46, 114, 25);
 		add(btnStop);
 		btnRecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -108,36 +108,16 @@ public class Grabador extends JPanel{
 		});
 		
 		
-		btnRecord.setBounds(25, 24, 97, 25);
+		btnRecord.setBounds(66, 46, 97, 25);
 		add(btnRecord);
-		
-
-		lblMensaje.setBounds(12, 224, 175, 16);
-		add(lblMensaje);
-		
-		
-		scrollPane_1.setBounds(273, 85, 201, 286);
-		add(scrollPane_1);
 		listaGrabables.setVisible(true);
-		listaGrabables.setBounds(25, 85, 223, 286);
+		listaGrabables.setBounds(66, 84, 247, 355);
 		add(listaGrabables);
 		
-		scrollPane_1.setViewportView(layeredPane);
-		
 //		textField = new JTextField();
-		textField.setBounds(25, 401, 322, 22);
+		textField.setBounds(66, 464, 545, 22);
 		add(textField);
 		textField.setColumns(10);
-		btnAbrirCarpeta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-//				FileDialog dialogoArchivo;
-//				dialogoArchivo = new FileDialog(f,"Lista de Archivos desde Frame", FileDialog.SAVE);
-//				dialogoArchivo.show();				
-			}
-		});
-		btnAbrirCarpeta.setBounds(359, 400, 115, 25);
-		
-		add(btnAbrirCarpeta);
 		btnStopPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -148,9 +128,14 @@ public class Grabador extends JPanel{
 				}
 			}
 		});
-		btnStopPlay.setBounds(377, 24, 97, 25);
+		btnStopPlay.setBounds(514, 46, 97, 25);
 		
 		add(btnStopPlay);
+		scrollPane.setBounds(407, 84, 204, 355);
+		
+		add(scrollPane);
+		
+		scrollPane.setViewportView(layeredPane);
 	}	
 	
 	/**
@@ -158,8 +143,9 @@ public class Grabador extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField textField = new JTextField();
-	private final JButton btnAbrirCarpeta = new JButton("Abrir carpeta");
 	private final JButton btnStopPlay = new JButton("Stop");
+	private final JScrollPane scrollPane = new JScrollPane();
+	private final JLayeredPane layeredPane = new JLayeredPane();
 
 	/**
 	 * Launch the application.

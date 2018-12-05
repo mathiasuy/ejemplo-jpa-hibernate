@@ -26,12 +26,12 @@ public class Cronometro extends JPanel implements Runnable{
 	public Cronometro() {
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{385, 0};
+		gridBagLayout.columnWidths = new int[]{411, 0};
 		gridBagLayout.rowHeights = new int[]{1, 36, 40, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-		setPreferredSize(new Dimension( 2000,2000));
+		setPreferredSize(new Dimension(468, 112));
 		
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 0);

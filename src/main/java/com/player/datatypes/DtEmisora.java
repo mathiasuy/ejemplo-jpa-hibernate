@@ -9,8 +9,8 @@ public class DtEmisora extends DtGrabable{
 	private String url;
 	
 	public DtEmisora(Long id, String nombre, String descripcion, String nombreArchivo, String banda, String frecuencia,
-			String url,String tipo) {
-		super(id, nombre, descripcion, nombreArchivo,tipo);
+			String url,String tipo, String pais, String localidad) {
+		super(id, nombre, descripcion, nombreArchivo,tipo,pais,localidad);
 		this.banda = banda;
 		this.frecuencia = frecuencia;
 		this.url = url;

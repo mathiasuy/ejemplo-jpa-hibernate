@@ -20,17 +20,25 @@ public class DtGrabable {
 	private String nombreArchivo;
 	private Date fechaAgregado;
 	private String tipo;
+	private String localidad;
+	private String pais;
 	
 	
-	public DtGrabable(Long id, String nombre, String descripcion, String nombreArchivo,String tipo) {
+	public DtGrabable(Long id, String nombre, String descripcion, String nombreArchivo,String tipo, String pais, String localidad) {
 		this.id = id;
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
 		this.fechaAgregado = new Date();
 		this.nombreArchivo = nombreArchivo;
+		this.pais = pais;
+		this.localidad = localidad;
 	}
 
+	public String getLocalidad() {
+		return this.localidad;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -62,5 +70,9 @@ public class DtGrabable {
 
 	public String getTipo() {
 		return tipo;
+	}
+
+	public String getPais() {
+		return pais;
 	}
 }
